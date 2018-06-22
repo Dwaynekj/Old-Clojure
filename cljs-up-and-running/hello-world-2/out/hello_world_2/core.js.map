@@ -1,0 +1,8 @@
+{"version":3,
+ "file":
+ "/Users/dwaynekj/Dropbox/Focus/Code/ClojureScript-tests/hello-world-2/out/hello_world_2/core.js",
+ "sources":["core.cljs"],
+ "lineCount":8,
+ "mappings":
+ ";AAAA;;AAEA,yBAAA,mBAAA,5CAAMA,uCAAKC,EAAEC,GACX,QAAGD,IAAEC;;AAEP,YAAA,ZAAGC,2BAA+B,iCAAA,EAAA,nCAACH",
+ "names":["hello-world-2.core/foo", "a", "b", "js/console"]}

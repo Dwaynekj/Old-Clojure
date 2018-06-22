@@ -1,0 +1,99 @@
+//Minesweeper Backend
+
+class Cell {
+	self.mineProximity = nil //-1 means its has a mine; 0 means its near no mines; >0  means it near this # of mines
+	self.id = nil
+	self.posX = nil
+	self.posY = nil
+	self.swept = false //Show the cell if true 
+	public isMine() bool {
+	 	return self.mineProximity < 1
+	}
+
+}
+
+class Matrix {
+	public constructor (size n) void{
+		// n > 3 or throw error
+		self.grid = self.generateGrid(n)
+	}
+
+	private generateGrid (size n) [][]Cell {
+		//Generate grid here
+		// Assign cell Id
+		//Assign cell mineProximity to -1 if you want it to have a mine
+	}
+
+	private checkDead (c Cell) bool {
+		return c.isMine()
+	}
+
+	public endGame () void{
+		// Do something
+	}
+
+	public checkCell (c Cell) {
+		if (c.checkDead(){
+			self.endGame()
+			return
+		} 
+
+		self.sweepBoard(c)
+	}
+
+	private sweepBoard(c Cell){
+		initialSweep = self.sweepCell(c)
+		self.sweep(initialSweep)
+	}
+
+	private sweepCell(c Cell) []Cell {
+		n = []
+		if (!c.swept) {
+			c.swept = true
+			var n = self.getSafeNeighborsAndRate(c)
+		}
+		return n
+
+	}
+
+
+	private sweep(targets []Cell) void {
+		if (targets.length < 1) {
+			return  //base case
+		}
+
+		t = targets.pop()
+		targets = targets.append(self.sweepCell(t))
+		sweep(targets)
+	}
+
+
+	private getSafeNeighborsAndRate(c Cell) []Cell {
+		var n = []Cell
+
+		c.mineProximity = 0
+
+		for (var i = c.posX-1; i < 2; i++){  // length
+			for (var j = c.posY-1; j < 2; j++){ // width
+				if (i >= self.grid.length && j >= self.grid[0].length) {
+					currNeigh = self.grid[i][j]
+					if (currNeigh.isMine()){
+						currNeigh.swept = true // No need to check her again
+						c.mineProximity++
+					} else if (!currNeigh.swept){
+						n.push(currNeigh)
+					}
+				}
+			}
+		}
+
+
+		//Don't Sweep beyond a cell that has mine nieghbors
+		if (c.mineProximity > 0){
+			return nil
+		}
+
+		return n
+
+	}
+}
